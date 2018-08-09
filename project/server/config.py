@@ -2,7 +2,8 @@
 
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
-postgres_local_base = 'postgresql://postgres:@localhost/'
+#postgres_local_base = 'postgresql://animeshshrivastava:12345678@localhost/'
+postgres_local_base = 'postgresql://flask:IBCDemo979#@flaskpoc.clxfzdjyksja.us-east-1.rds.amazonaws.com/'
 database_name = 'flask_jwt_auth'
 
 

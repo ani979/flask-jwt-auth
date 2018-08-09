@@ -6,6 +6,7 @@ from flask.views import MethodView
 
 from project.server import bcrypt, db
 from project.server.models import User, BlacklistToken
+import logging
 
 auth_blueprint = Blueprint('auth', __name__)
 
@@ -19,7 +20,11 @@ class RegisterAPI(MethodView):
         # get the post data
         post_data = request.get_json()
         # check if user already exists
+        logger = logging.getLogger("views")
+        logger.debug(" i am here")
+        print("i am here")
         user = User.query.filter_by(email=post_data.get('email')).first()
+        print(user)
         if not user:
             try:
                 user = User(
@@ -27,10 +32,12 @@ class RegisterAPI(MethodView):
                     password=post_data.get('password')
                 )
                 # insert the user
+                print(db)
                 db.session.add(user)
                 db.session.commit()
                 # generate the auth token
                 auth_token = user.encode_auth_token(user.id)
+                print(auth_token)
                 responseObject = {
                     'status': 'success',
                     'message': 'Successfully registered.',

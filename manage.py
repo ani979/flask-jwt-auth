@@ -1,6 +1,8 @@
 # manage.py
 
-
+import sys
+print (sys.executable)
+print ("\n".join(sys.path))
 import os
 import unittest
 import coverage
